@@ -1,0 +1,6 @@
+<div>
+  <%= form_with(model: [post ,Comment.new] ) do |f| %>
+    <%= f.text_area :content %>
+    <%= f.submit %>
+  <% end %>
+</div>

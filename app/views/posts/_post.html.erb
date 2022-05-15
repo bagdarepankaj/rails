@@ -1,0 +1,7 @@
+<div id="<%= dom_id post %>" style="display: inline-block;">
+  <h3><%= post.title %></h3>
+  <p>
+    <%= time_tag post.created_at, 'data-local': 'time-ago' %>
+  </p>
+  <p><%= post.content %></p>
+</div>
