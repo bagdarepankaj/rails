@@ -17,26 +17,26 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    respond_to do |response|
+    respond_to do |format|
       if @user.save
-        response.html { redirect_to users_path, notice: 'User successfully created' }
-        response.json { render :index, notice: 'User successfully created' }
+        format.html { redirect_to users_path, notice: 'User successfully created' }
+        format.json { render :index, notice: 'User successfully created' }
       else
-        response.html { render :new, notice: 'Error occurred' }
-        response.json { render :index, notice: 'Error occurred' }
+        format.html { render :new, notice: 'Error occurred' }
+        format.json { render :index, notice: 'Error occurred' }
       end
     end
   end
 
   def update
     @user = @user.update_attributes(user_params)
-    respond_to do |response|
+    respond_to do |format|
       if @user.save
-        response.html { redirect_to users_path, notice: 'User successfully created' }
-        response.json { render :index, notice: 'User successfully created' }
+        format.html { redirect_to users_path, notice: 'User successfully created' }
+        format.json { render :index, notice: 'User successfully created' }
       else
-        response.html { render :new, notice: 'Error occurred' }
-        response.json { render :index, notice: 'Error occurred' }
+        format.html { render :new, notice: 'Error occurred' }
+        format.json { render :index, notice: 'Error occurred' }
       end
     end
   end
