@@ -1,0 +1,15 @@
+<h3>Show User</h3>
+<div class="user">
+  <table>
+    <tr>
+      <td>First Name</td><td><%= @user.first_name %></td>
+    </tr>
+    <tr>
+      <td>Last Name</td><td><%= @user.last_name %></td>
+    </tr>
+    <tr>
+      <td>Email</td><td><%= @user.email %></td>
+    </tr>
+  </table>
+</div><br>
+<%= link_to 'Edit User', edit_user_path(@user) %>
