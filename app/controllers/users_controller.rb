@@ -19,11 +19,11 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
-        format.html { redirect_to users_path, notice: 'User successfully created' }
-        format.json { render :index, notice: 'User successfully created' }
+        format.html { redirect_to user_path(@user), notice: 'User successfully created' }
+        format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, notice: 'Error occurred' }
-        format.json { render :index, notice: 'Error occurred' }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -32,12 +32,20 @@ class UsersController < ApplicationController
     @user = @user.update_attributes(user_params)
     respond_to do |format|
       if @user.save
-        format.html { redirect_to users_path, notice: 'User successfully created' }
-        format.json { render :index, notice: 'User successfully created' }
+        format.html { redirect_to user_path(@user), notice: 'User successfully Updated' }
+        format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :new, notice: 'Error occurred' }
-        format.json { render :index, notice: 'Error occurred' }
+        format.html { render :edit, notice: 'Error occurred' }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    @user.destroy
+    respond_to do |format|
+      format.html { render :index, notice: 'User successfully Destroyed'}
+      format.json { head :no_content }
     end
   end
 
@@ -48,6 +56,6 @@ class UsersController < ApplicationController
   end
 
   def find_user
-    @user = User.find_by(params[:id])
+    @user = User.find_by(id: params[:id])
   end
 end
